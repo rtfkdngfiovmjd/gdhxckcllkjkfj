@@ -14,8 +14,17 @@ $(function(){
         success: function(ret) {
         	for(var key in ret){
                 console.log(ret[key]);
-                $('.table-view').append('<li class="table-view-cell"><a class="navigate-right"><span class="badge">'+ret[key].nota+'</span>'+ret[key].nome+'</a></li>');
+                $('.table-view').append('<li class="table-view-cell"><a class="navigate-right"><span class="badge '+get_class_nota(ret[key].nota)+'">'+ret[key].nota+'</span>'+ret[key].nome+'</a></li>');
         	}
         },
     });
 });
+
+function get_class_nota(nota){
+    if(nota >= 70){
+        return 'badge-positive';
+    }
+    else{
+        return 'badge-negative';
+    }
+}
