@@ -1,6 +1,15 @@
 .bar-nav{
     background-color: #2C3E50;
 }
-#tela{
+#tela-notas{
     display: none;
+}
+#load{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 64px;
+   height: 64px;
+   margin-top: -32px; /* Half the height */
+   margin-left: -32px; /* Half the width */
 }
