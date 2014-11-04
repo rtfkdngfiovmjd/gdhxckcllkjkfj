@@ -12,25 +12,26 @@
 </head>
 <body>
   <header class="bar bar-nav">
-    <a id="atualizar-notas" class="icon icon-refresh pull-right"></a>
+    <a class="icon icon-left-nav pull-left" href="notas.html" data-transition="slide-out"></a>
     <h1 class="title"><img src="logo.png"></h1>
   </header>
-  <div class="content" data-page="notas">
+  <div class="content" data-page="disciplina">
     <img id="load" src="img/load.gif">
-    <ul id="lista-notas" class="table-view" style="display:none">
-
-    </ul>
+    <div id="conteudo" style="display:none">
+      
+    </div>
   </div>
   <nav class="bar bar-tab">
     <a class="tab-item" href="mural.html" data-transition="slide-out">
       <span class="icon icon-home"></span>
       <span class="tab-label">Mural</span>
     </a>
-    <a class="tab-item active" href="#">
+    <a class="tab-item active" href="notas.html" data-transition="slide-out">
       <span class="icon icon-compose"></span>
       <span class="tab-label">Notas</span>
     </a>
   </nav>
+
   <script type="text/javascript" src="cordova.js"></script>
 </body>
 </html>

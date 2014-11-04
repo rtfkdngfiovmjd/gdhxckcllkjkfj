@@ -1,4 +1,4 @@
-var BASE_URL = 'http://sicof.doctum.edu.br/';
+var BASE_URL = 'http://192.168.10.108/';
 var aluno = localStorage.getItem('aluno');
 var unidade = localStorage.getItem('unidade');
 $(function(){

@@ -1,29 +1,23 @@
-var BASE_URL = 'http://sicof.doctum.edu.br/';
+var BASE_URL = 'http://192.168.10.108/';
 var aluno = localStorage.getItem('aluno');
 var unidade = localStorage.getItem('unidade');
-pagina_atual = 'mural';
 //Carrega notas quando abrir app pela primeira vez
 $(function(){
-	carrega_notas();
+	carrega_notas_adx();
 	$(document).on('click','#atualizar-notas',function(){
 		$('#lista-notas').hide();
 		$('#load').show();
-		carrega_notas();
-		exibe_notas('atualiza');
-		alert(pagina_atual);
+		carrega_notas_adx(true);
 	});
 });
 
-
-function exibe_notas(acao){
-	if(acao != 'atualiza'){
-		pagina_atual = altera_pagina(pagina_atual);
-	}
-	if(pagina_atual == 'notas'){
+function carrega_pagina(){
+	if($('.content').attr('data-page') == 'notas'){
 		gera_html_notas();
-	    $('#load').hide();
-	    $('#lista-notas').show();
-	}	
+	}
+	else if($('.content').attr('data-page') == 'disciplina'){
+		gerar_html_disciplina(window.location.href.split("#")[1]);
+	}
 }
 
 function get_class_nota(nota){
@@ -35,16 +29,7 @@ function get_class_nota(nota){
     }
 }
 
-function altera_pagina(pagina){
-	if (pagina == 'mural') {
-		return 'notas';
-	}
-	else{
-		return 'mural';
-	}
-}
-
-function carrega_notas(){
+function carrega_notas_adx(gerar_html){
 	$.ajax({
         type: 'GET', // defaults to 'GET'
         url: BASE_URL+'notasMobile.php',
@@ -55,8 +40,10 @@ function carrega_notas(){
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
         success: function(ret) {
-        	alert('carregou');
         	localStorage.setItem('ret',JSON.stringify(ret));
+        	if(gerar_html){
+        		gera_html_notas();
+        	}
         },
     });
 }
@@ -65,8 +52,30 @@ function gera_html_notas(){
 	var ret = jQuery.parseJSON(localStorage.getItem('ret'));
 	$('.table-view').html('');
 	for(var key in ret){
-        $('.table-view').append('<li class="table-view-cell"><a class="navigate-right"><span class="badge '+get_class_nota(ret[key].nota)+'">'+ret[key].nota+'</span>'+ret[key].nome+'</a></li>');
+        $('.table-view').append('<li class="table-view-cell"><a data-transition="slide-in" href="disciplina.html#'+key+'" class="disciplina navigate-right"><span class="badge '+get_class_nota(ret[key].nota)+'">'+ret[key].nota+'</span>'+ret[key].nome+'</a></li>');
 	}
+	$('#load').hide();
+    $('#lista-notas').show();
 }
 
-window.addEventListener('push', exibe_notas);
+function gerar_html_disciplina(disciplina){
+	var ret = jQuery.parseJSON(localStorage.getItem('ret'));
+	var agendamentos = '';
+	$('#conteudo').html('');
+	$('#conteudo').append('<ul class="table-view"><li class="table-view-cell"><a><span class="badge badge-inverted">Nota</span>Agendamentos<p>'+disciplina+'</p></a></li></ul>');
+	for(var key in ret[disciplina].etapas){
+		agendamentos = '';
+		$('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge badge-primary">'+ret[disciplina].etapas[key].nota+'</span>'+key+'</li></ul>');
+		agendamentos = agendamentos + '<div class="card"><ul class="table-view">';
+		for(var key2 in ret[disciplina].etapas[key].agenda){
+			agendamentos = agendamentos + '<li class="table-view-cell">'+ret[disciplina].etapas[key].agenda[key2].nome+'</li>';
+		}
+		agendamentos = agendamentos + '</ul></div>';
+		$('#conteudo').append(agendamentos);
+	}
+	
+	$('#load').hide();
+    $('#conteudo').show();
+}
+
+window.addEventListener('push', carrega_pagina);

@@ -13,3 +13,9 @@
    margin-top: -32px; /* Half the height */
    margin-left: -32px; /* Half the width */
 }
+.etapa{
+    background-color: #098ed8;
+}
+.etapa-nome{
+    color: white;
+}
