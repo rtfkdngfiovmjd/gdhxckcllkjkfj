@@ -19,3 +19,26 @@
 .etapa-nome{
     color: white;
 }
+.nota-agendamento{
+    color: blue;
+}
+.content-page{
+    margin-bottom: 35px;
+}
+.titulo-modal{
+    color: white;
+}
+.remetente-data{
+    color: black;
+}
+.titulo-aviso{
+    font-size: 20px;
+    color: black;
+}
+.texto-aviso{
+    text-align: justify;
+}
+
+html {
+    -webkit-user-select: none;
+}

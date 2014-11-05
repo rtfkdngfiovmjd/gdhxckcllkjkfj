@@ -15,61 +15,36 @@
 </head>
 <body>
     <header class="bar bar-nav">
-        <a class="icon icon-refresh pull-right"></a>
+        <a class="icon icon-refresh pull-right" id="atualizar-mural"></a>
         <h1 class="title"><img src="logo.png"></h1>
     </header>
-    <div class="content" data-page="mural">
-        <ul class="table-view">
-          <li class="table-view-cell media">
-            <a class="navigate-right">
-              <img class="media-object pull-left" src="http://placehold.it/42x42">
-              <div class="media-body">
-                Item 1
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-            </div>
+    <div class="content content-page" data-page="mural">
+        <img id="load" src="img/load.gif">
+        <div id="conteudo-mural" style="display:none">
+            <ul class="table-view"><li class="table-view-cell"><a>Mural do aluno</a></li></ul>
+            <ul class="table-view" id="lista-mural">
+
+            </ul>
+        </div>        
+    </div>
+    <div id="modais">
+            
+    </div>
+    <nav class="bar bar-tab">
+        <a class="tab-item active" href="#">
+            <span class="icon icon-home"></span>
+            <span class="tab-label">Mural</span>
         </a>
-    </li>
-    <li class="table-view-cell media">
-        <a class="navigate-right">
-          <img class="media-object pull-left" src="http://placehold.it/42x42">
-          <div class="media-body">
-            Item 1
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-        </div>
-    </a>
-</li>
-<li class="table-view-cell media">
-    <a class="navigate-right">
-      <img class="media-object pull-left" src="http://placehold.it/42x42">
-      <div class="media-body">
-        Item 1
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-    </div>
-</a>
-</li>
+        <a class="tab-item" id="notas" href="notas.html" data-transition="slide-in">
+            <span class="icon icon-compose"></span>
+            <span class="tab-label">Notas</span>
+        </a>
+        <a class="tab-item" id="sair">
+            <span class="icon icon-close"></span>
+            <span class="tab-label">Sair</span>
+        </a>
+    </nav>
 
-<li class="table-view-cell media">
-    <a class="navigate-right">
-      <img class="media-object pull-left" src="http://placehold.it/42x42">
-      <div class="media-body">
-        Item 1
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-    </div>
-</a>
-</li>
-</ul>
-</div>
-<nav class="bar bar-tab">
-    <a class="tab-item active" href="#">
-        <span class="icon icon-home"></span>
-        <span class="tab-label">Mural</span>
-    </a>
-    <a class="tab-item" id="notas" href="notas.html" data-transition="slide-in">
-        <span class="icon icon-compose"></span>
-        <span class="tab-label">Notas</span>
-    </a>
-</nav>
-
-<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 </body>
 </html>
