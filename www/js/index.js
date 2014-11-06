@@ -7,7 +7,6 @@ var ret;
 var mural;
 
 $(function(){
-    console.log('entrou na aplicação');
     //Atualização de página
     $(document).on('click','#atualizar-notas',function(){
         $('#coteudo-notas').hide();
@@ -88,10 +87,6 @@ $(function(){
 });
 
 function carrega_pagina(){
-    console.log(ret);
-    console.log(aluno);
-    console.log(unidade);
-    console.log(lembrar);
     pagina_atual = $('.content').attr('data-page');
     if(pagina_atual == 'notas'){
         gera_html_notas();
@@ -132,10 +127,6 @@ function carrega_notas_adx(gerar_html){
             if(gerar_html){
                 gera_html_notas();
             }
-            console.log(ret);
-            console.log(aluno);
-            console.log(unidade);
-            console.log(lembrar);
         },
         error: function(){
             alert('Estamos com problemas para buscar suas notas, verifique se está conectado a internet!');
@@ -248,11 +239,8 @@ function sair(){
     lembrar = null;
     aluno = null;
     unidade = null;
+    mural = null;
     pagina_atual = 'login';
-    console.log(ret);
-    console.log(aluno);
-    console.log(unidade);
-    console.log(lembrar);
     $('body').load('login.html');
     return false;
 }
