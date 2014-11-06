@@ -2,8 +2,12 @@ var BASE_URL = 'http://192.168.10.108/';
 var aluno = localStorage.getItem('aluno');
 var unidade = localStorage.getItem('unidade');
 var pagina_atual = 'login';
+var lembrar = null;
+var ret;
+var mural;
 
 $(function(){
+    console.log('entrou na aplicação');
     //Atualização de página
     $(document).on('click','#atualizar-notas',function(){
         $('#coteudo-notas').hide();
@@ -43,14 +47,15 @@ $(function(){
             },
             dataType: 'json', //'json', 'xml', 'html', or 'text'
             async: true,
-            success: function(ret) {
-                if (ret.erro==1 ) {
+            success: function(dados) {
+                if (dados.erro==1 ) {
                     alert("Senha ou usuário incorretos");
                     location.reload();
                 } else{
                     aluno = $("#aluno").val();
                     unidade = $("#unidade").val();
-                    if ($("#lembrar")[0].checked) {
+                    lembrar = $("#lembrar")[0].checked;
+                    if (lembrar) {
                         localStorage.setItem('aluno',aluno);
                         localStorage.setItem('unidade',unidade);
                     }
@@ -68,6 +73,7 @@ $(function(){
 
     //Se o aluno existir já entra na aplicação
     if(aluno != null && unidade != null){
+        lembrar = true;
         $('#tela').show();
         pagina_atual = 'mural';
         $('body').load("mural.html");
@@ -82,8 +88,11 @@ $(function(){
 });
 
 function carrega_pagina(){
+    console.log(ret);
+    console.log(aluno);
+    console.log(unidade);
+    console.log(lembrar);
     pagina_atual = $('.content').attr('data-page');
-    console.log(pagina_atual);
     if(pagina_atual == 'notas'){
         gera_html_notas();
     }
@@ -115,12 +124,18 @@ function carrega_notas_adx(gerar_html){
         },
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
-        success: function(ret) {
-            ret = remove_espaco_nome_disciplina(ret);
-            localStorage.setItem('ret',JSON.stringify(ret));
+        success: function(dados) {
+            ret = remove_espaco_nome_disciplina(dados);
+            if (lembrar) {
+                localStorage.setItem('ret',JSON.stringify(ret));
+            }
             if(gerar_html){
                 gera_html_notas();
             }
+            console.log(ret);
+            console.log(aluno);
+            console.log(unidade);
+            console.log(lembrar);
         },
         error: function(){
             alert('Estamos com problemas para buscar suas notas, verifique se está conectado a internet!');
@@ -133,7 +148,6 @@ function carrega_notas_adx(gerar_html){
 
 
 function gera_html_notas(){
-    var ret = jQuery.parseJSON(localStorage.getItem('ret'));
     $('#lista-notas').html('');
     for(var key in ret){
         $('#lista-notas').append('<li class="table-view-cell"><a data-transition="slide-in" href="disciplina.html#'+key+'" class="disciplina navigate-right"><span class="badge '+get_class_nota(ret[key].nota)+'">'+ret[key].nota+'</span>'+ret[key].nome+'</a></li>');
@@ -143,7 +157,6 @@ function gera_html_notas(){
 }
 
 function gerar_html_disciplina(disciplina){
-    var ret = jQuery.parseJSON(localStorage.getItem('ret'));
     var agendamentos = '';
     $('#conteudo').html('');
     $('#conteudo').append('<ul class="table-view"><li class="table-view-cell"><a><span class="badge badge-inverted">Nota</span>Agendamentos<p>'+disciplina+'</p></a></li></ul>');
@@ -162,7 +175,6 @@ function gerar_html_disciplina(disciplina){
 }
 
 function gerar_html_mural(){
-    var mural = jQuery.parseJSON(localStorage.getItem('mural'));
     var modais;
     $('#lista-mural').html('');
     for(var key in mural){
@@ -188,8 +200,11 @@ function carrega_mural_adx(){
         },
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
-        success: function(ret) {
-            localStorage.setItem('mural',JSON.stringify(ret));
+        success: function(dados) {
+            if (lembrar) {
+                localStorage.setItem('mural',JSON.stringify(dados));
+            }
+            mural = dados;
             gerar_html_mural();
         },
         error: function(){
@@ -229,9 +244,15 @@ function valida_remetente(text){
 
 function sair(){
     localStorage.clear();
+    ret = null;
+    lembrar = null;
     aluno = null;
     unidade = null;
     pagina_atual = 'login';
+    console.log(ret);
+    console.log(aluno);
+    console.log(unidade);
+    console.log(lembrar);
     $('body').load('login.html');
     return false;
 }
