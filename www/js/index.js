@@ -113,7 +113,10 @@ function carrega_pagina(disciplina){
 }
 
 function get_class_nota(nota,valor){
-    if(parseFloat(nota) >= parseFloat(valor)*0.7){
+    if(isNaN(nota)){
+        return false;
+    }
+    else if(parseFloat(nota) >= parseFloat(valor)*0.7){
         return 'badge-primary';
     }
     else{
@@ -158,7 +161,7 @@ function gera_html_notas(){
     $('#lista-notas').html('');
     for(var key in ret){
         var nota = parseFloat(ret[key].nota).toFixed(1);
-        $('#lista-notas').append('<div class="card"><ul class="table-view"><li class="table-view-cell"><a onclick="$(\'body\').load(\'disciplina.html\',function(){carrega_pagina(\''+key+'\');})" class="disciplina navigate-right"><span class="badge '+get_class_nota(ret[key].nota,100)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+ret[key].nome+'</span></a></li></ul></div>');
+        $('#lista-notas').append('<div class="card"><ul class="table-view"><li class="table-view-cell"><a onclick="$(\'body\').load(\'disciplina.html\',function(){carrega_pagina(\''+key+'\');})" class="disciplina navigate-right"><span class="badge '+get_class_nota(nota,100)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+ret[key].nome+'</span></a></li></ul></div>');
     }
     $('#load').hide();
     $('#coteudo-notas').show();
@@ -175,10 +178,12 @@ function gerar_html_disciplina(disciplina){
         }
         else{
             agendamentos = '';
-            $('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge '+get_class_nota(ret[disciplina].etapas[key].nota,ret[disciplina].etapas[key].pontos)+'">'+parseFloat(ret[disciplina].etapas[key].nota).toFixed(1)+'</span>'+key+'</li></ul>');
+            var etapa_nota = parseFloat(ret[disciplina].etapas[key].nota).toFixed(1);
+            $('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge '+get_class_nota(etapa_nota,ret[disciplina].etapas[key].pontos)+'">'+((isNaN(etapa_nota))?"-":etapa_nota)+'</span>'+key+'</li></ul>');
             agendamentos = agendamentos + '<div class="card"><ul class="table-view">';
             for(var key2 in ret[disciplina].etapas[key].agenda){
-                agendamentos = agendamentos + '<li class="table-view-cell"><span class="badge '+get_class_nota(ret[disciplina].etapas[key].agenda[key2].nota,ret[disciplina].etapas[key].agenda[key2].valor)+'">'+parseFloat(ret[disciplina].etapas[key].agenda[key2].nota).toFixed(1)+'</span><span class="nome-azul">'+ret[disciplina].etapas[key].agenda[key2].nome+'</span><p>Data: '+ret[disciplina].etapas[key].agenda[key2].data+'</p><p>Valor: '+ret[disciplina].etapas[key].agenda[key2].valor+'</p></li>';
+                var nota = parseFloat(ret[disciplina].etapas[key].agenda[key2].nota).toFixed(1);
+                agendamentos = agendamentos + '<li class="table-view-cell"><span class="badge '+get_class_nota(nota,ret[disciplina].etapas[key].agenda[key2].valor)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+ret[disciplina].etapas[key].agenda[key2].nome+'</span><p>Data: '+ret[disciplina].etapas[key].agenda[key2].data+'</p><p>Valor: '+ret[disciplina].etapas[key].agenda[key2].valor+'</p></li>';
             }
             agendamentos = agendamentos + '</ul></div>';
             $('#conteudo').append(agendamentos);
