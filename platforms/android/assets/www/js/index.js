@@ -169,7 +169,8 @@ function gerar_html_disciplina(disciplina){
     $('#conteudo').append('<ul class="table-view"><li class="table-view-cell titulo"><span class="badge badge-inverted nome">Nota</span>Agendamentos<p class="nome">'+disciplina+'</p></li></ul>');
     for(var key in ret[disciplina].etapas){
         agendamentos = '';
-        $('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge '+get_class_nota(ret[disciplina].etapas[key].nota,ret[disciplina].etapas[key].pontos)+'">'+parseFloat(ret[disciplina].etapas[key].nota).toFixed(1)+'</span>'+key+'</li></ul>');
+        var nota = parseFloat(ret[disciplina].etapas[key].nota).toFixed(1);
+        $('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge '+get_class_nota(ret[disciplina].etapas[key].nota,ret[disciplina].etapas[key].pontos)+'">'+((isNaN(nota)) ? "-" : nota)+'</span>'+key+'</li></ul>');
         agendamentos = agendamentos + '<div class="card"><ul class="table-view">';
         for(var key2 in ret[disciplina].etapas[key].agenda){
             agendamentos = agendamentos + '<li class="table-view-cell"><span class="badge '+get_class_nota(ret[disciplina].etapas[key].agenda[key2].nota,ret[disciplina].etapas[key].agenda[key2].valor)+'">'+parseFloat(ret[disciplina].etapas[key].agenda[key2].nota).toFixed(1)+'</span><span class="nome-azul">'+ret[disciplina].etapas[key].agenda[key2].nome+'</span><p>Data: '+ret[disciplina].etapas[key].agenda[key2].data+'</p><p>Valor: '+ret[disciplina].etapas[key].agenda[key2].valor+'</p></li>';
