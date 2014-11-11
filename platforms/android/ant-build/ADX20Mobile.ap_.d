@@ -32,7 +32,6 @@
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/css/ratchet.min.css \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/moment-with-locales.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/ratchet.min.js \
-/var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/mural.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/index.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/jquery.min.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser \
