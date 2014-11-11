@@ -19,7 +19,7 @@
     },
     "installed_plugins": {
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.fluxsoftwares.adx_mobile"
+            "PACKAGE_NAME": "com.fluxsoftwares.adx_2_0_mobile"
         }
     },
     "dependent_plugins": {}

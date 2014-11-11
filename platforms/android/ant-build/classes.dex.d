@@ -1,11 +1,11 @@
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes.dex : \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/R$attr.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/R$xml.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/R$drawable.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/BuildConfig.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/ADXMobile.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/R.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_mobile/R$string.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R$attr.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R$xml.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R$drawable.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/BuildConfig.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/ADX20Mobile.class \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R$string.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$2.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowserDialog.class \

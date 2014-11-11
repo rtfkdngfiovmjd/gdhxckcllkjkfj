@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.fluxsoftwares.adx_mobile;
+package com.fluxsoftwares.adx_2_0_mobile;
 
 public final class R {
     public static final class attr {

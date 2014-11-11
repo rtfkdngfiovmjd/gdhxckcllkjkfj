@@ -17,12 +17,12 @@
        under the License.
  */
 
-package com.fluxsoftwares.adx_mobile;
+package com.fluxsoftwares.adx_2_0_mobile;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class ADXMobile extends CordovaActivity 
+public class ADX20Mobile extends CordovaActivity 
 {
     @Override
     public void onCreate(Bundle savedInstanceState)

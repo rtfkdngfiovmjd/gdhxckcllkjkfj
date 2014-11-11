@@ -1,4 +1,4 @@
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-gen/com/fluxsoftwares/adx_mobile/R.java \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-gen/com/fluxsoftwares/adx_2_0_mobile/R.java \
  : /var/www/html/flux/adx-mobile-2/platforms/android/res/values/strings.xml \
 /var/www/html/flux/adx-mobile-2/platforms/android/res/drawable-ldpi/icon.png \
 /var/www/html/flux/adx-mobile-2/platforms/android/res/drawable-xhdpi/icon.png \

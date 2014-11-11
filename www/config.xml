@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.fluxsoftwares.adx-mobile" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>ADX Mobile</name>
+<widget id="com.fluxsoftwares.adx-2-0-mobile" versionCode="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>ADX 2.0 Mobile</name>
     <description>
         Alterar
     </description>
@@ -23,6 +23,14 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <icon src="www/icon.png" />
+    <icon src="www/res/img/icon.png" />
+    <!--
+        Default icon should work, but cordova don't overwrite
+        the default on all densities
+    -->
+    <icon src="www/res/img/icon.png" platform="android" density="ldpi" />
+    <icon src="www/res/img/icon.png" platform="android" density="mdpi" />
+    <icon src="www/res/img/icon.png" platform="android" density="hdpi" />
+    <icon src="www/res/img/icon.png" platform="android" density="xhdpi" />
     <access origin="*" />
 </widget>

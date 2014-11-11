@@ -275,7 +275,7 @@ html {
    margin-left: -32px; /* Half the width */
 }
 .etapa{
-    background-color: #098ed8;
+    background-color: #929292;
 }
 .etapa-nome{
     color: white;
@@ -334,7 +334,7 @@ a{
   font-weight: bold;
 }
 .bar-nav ~ .content {
-  padding-top: 43px;
+  padding-top: 40px;
 }
 .modal > .content {
   padding-top: 28px;
@@ -375,4 +375,22 @@ pre{
 }
 #logo-barra{
   margin-top: 5px;
+}
+.badge{
+  width: 42px;
+  text-align: center;
+}
+.atualizado{
+  margin: -14px 0px;
+  text-align: center;
+  font-size: 8px;
+}
+.atualizado-disciplina{
+  margin: -7px 0px;
+}
+#conteudo > .table-view{
+  margin-bottom: 6px;
+}
+#nome-usuario{
+  font-size: 12px;
 }

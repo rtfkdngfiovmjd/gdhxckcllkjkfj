@@ -1,9 +1,12 @@
 var BASE_URL = 'http://192.168.10.108/';
 var aluno = localStorage.getItem('aluno');
 var unidade = localStorage.getItem('unidade');
+var nome = localStorage.getItem('nome');
+var data_atualizacao_mural = localStorage.getItem('data_atualizacao_mural');
+var data_atualizacao_notas = localStorage.getItem('data_atualizacao_notas');
 var pagina_atual = 'login';
 var lembrar = null;
-var ret;
+var notas;
 var mural;
 
 $(function(){
@@ -61,15 +64,17 @@ $(function(){
             async: true,
             success: function(dados) {
                 if (dados.erro==1 ) {
-                    notification('Senha ou usuário incorretos!','notification-error');
+                    notification('Senha ou usuário incornotasos!','notification-error');
                     location.reload();
                 } else{
                     aluno = $("#aluno").val();
                     unidade = $("#unidade").val();
+                    nome = dados.nome;
                     lembrar = $("#lembrar")[0].checked;
                     if (lembrar) {
                         localStorage.setItem('aluno',aluno);
                         localStorage.setItem('unidade',unidade);
+                        localStorage.setItem('nome',nome);
                     }
                     pagina_atual = 'mural';
                     $('body').load("mural.html");
@@ -97,6 +102,9 @@ $(function(){
         $('body').load("login.html");
         $('#tela').show();
     }
+
+    setInterval(function(){$('#atualizado-mural').html('Atualizado '+moment(data_atualizacao_mural,'DDMMYYYYhmmss').fromNow())},1000);
+    setInterval(function(){$('#atualizado-notas').html('Atualizado '+moment(data_atualizacao_notas,'DDMMYYYYhmmss').fromNow())},1000);
 });
 
 function carrega_pagina(disciplina){
@@ -136,16 +144,18 @@ function carrega_notas_adx(gerar_html){
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
         success: function(dados) {
-            ret = remove_espaco_nome_disciplina(dados);
+            notas = remove_espaco_nome_disciplina(dados.notas);
+            data_atualizacao_notas = dados.hora;
             if (lembrar) {
-                localStorage.setItem('ret',JSON.stringify(ret));
+                localStorage.setItem('notas',JSON.stringify(notas));
+                localStorage.setItem('data_atualizacao_notas',dados.hora);
             }
             if(gerar_html){
                 gera_html_notas();
             }
         },
         error: function(){
-            ret =  JSON.parse(localStorage.getItem('ret'));
+            notas = JSON.parse(localStorage.getItem('notas'));
             if(gerar_html){
                 notification('Sem conexão com a internet!','notification-error')
             }
@@ -159,9 +169,10 @@ function carrega_notas_adx(gerar_html){
 
 function gera_html_notas(){
     $('#lista-notas').html('');
-    for(var key in ret){
-        var nota = parseFloat(ret[key].nota).toFixed(1);
-        $('#lista-notas').append('<div class="card"><ul class="table-view"><li class="table-view-cell"><a onclick="$(\'body\').load(\'disciplina.html\',function(){carrega_pagina(\''+key+'\');})" class="disciplina navigate-right"><span class="badge '+get_class_nota(nota,100)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+ret[key].nome+'</span></a></li></ul></div>');
+    $('#lista-notas').append('<p class="atualizado" id="atualizado-notas">Atualizado '+moment(data_atualizacao_notas,'DDMMYYYYhmmss').fromNow()+'</p>');
+    for(var key in notas){
+        var nota = parseFloat(notas[key].nota).toFixed(1);
+        $('#lista-notas').append('<div class="card"><ul class="table-view"><li class="table-view-cell"><a onclick="$(\'body\').load(\'disciplina.html\',function(){carrega_pagina(\''+key+'\');})" class="disciplina navigate-right"><span class="badge '+get_class_nota(nota,100)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+notas[key].nome+'</span></a></li></ul></div>');
     }
     $('#load').hide();
     $('#coteudo-notas').show();
@@ -171,19 +182,20 @@ function gerar_html_disciplina(disciplina){
     var agendamentos = '';
     $('#conteudo').html('');
     $('#conteudo').append('<ul class="table-view"><li class="table-view-cell titulo"><span class="badge badge-inverted nome">Nota</span>Agendamentos<p class="nome">'+disciplina+'</p></li></ul>');
-    for(var key in ret[disciplina].etapas){
+    $('#conteudo').append('<p class="atualizado atualizado-disciplina" id="atualizado-notas">Atualizado '+moment(data_atualizacao_notas,'DDMMYYYYhmmss').fromNow()+'</p>');
+    for(var key in notas[disciplina].etapas){
         if("" == key){
             var mensagem = '<div class="card"><ul class="table-view"><li class="table-view-cell" style="text-align: justify">Ainda não existe agendamentos para essa disciplina!</li></ul></div>';
             $('#conteudo').append(mensagem);
         }
         else{
             agendamentos = '';
-            var etapa_nota = parseFloat(ret[disciplina].etapas[key].nota).toFixed(1);
-            $('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge '+get_class_nota(etapa_nota,ret[disciplina].etapas[key].pontos)+'">'+((isNaN(etapa_nota))?"-":etapa_nota)+'</span>'+key+'</li></ul>');
+            var etapa_nota = parseFloat(notas[disciplina].etapas[key].nota).toFixed(1);
+            $('#conteudo').append('<ul class="table-view etapa"><li class="table-view-cell etapa-nome"><span class="badge '+get_class_nota(etapa_nota,notas[disciplina].etapas[key].pontos)+'">'+((isNaN(etapa_nota))?"-":etapa_nota)+'</span>'+key+'</li></ul>');
             agendamentos = agendamentos + '<div class="card"><ul class="table-view">';
-            for(var key2 in ret[disciplina].etapas[key].agenda){
-                var nota = parseFloat(ret[disciplina].etapas[key].agenda[key2].nota).toFixed(1);
-                agendamentos = agendamentos + '<li class="table-view-cell"><span class="badge '+get_class_nota(nota,ret[disciplina].etapas[key].agenda[key2].valor)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+ret[disciplina].etapas[key].agenda[key2].nome+'</span><p>Data: '+ret[disciplina].etapas[key].agenda[key2].data+'</p><p>Valor: '+ret[disciplina].etapas[key].agenda[key2].valor+'</p></li>';
+            for(var key2 in notas[disciplina].etapas[key].agenda){
+                var nota = parseFloat(notas[disciplina].etapas[key].agenda[key2].nota).toFixed(1);
+                agendamentos = agendamentos + '<li class="table-view-cell"><span class="badge '+get_class_nota(nota,notas[disciplina].etapas[key].agenda[key2].valor)+'">'+((isNaN(nota))?"-":nota)+'</span><span class="nome-azul">'+notas[disciplina].etapas[key].agenda[key2].nome+'</span><p>Data: '+notas[disciplina].etapas[key].agenda[key2].data+'</p><p>Valor: '+notas[disciplina].etapas[key].agenda[key2].valor+'</p></li>';
             }
             agendamentos = agendamentos + '</ul></div>';
             $('#conteudo').append(agendamentos);
@@ -196,10 +208,17 @@ function gerar_html_disciplina(disciplina){
 function gerar_html_mural(){
     $('#lista-mural').html('');
     $('#modais').html('');
-    for(var key in mural){
-        $('#lista-mural').append('<div class="card"><ul class="table-view"><li class="table-view-cell media"><a onclick="altera_conteudo_modal(\''+mural[key].assunto+'\',\''+mural[key].data+'\',\''+valida_remetente(mural[key].remetente)+'\',\'<pre>'+encodeURI(mural[key].texto)+'</pre>\')" href="#myModal"><div class="media-body"><span class="nome-azul">'+mural[key].assunto+'</span><p>Toque para visualizar</p></div></a></li></ul></div>');
+    $('#nome-usuario').html(aluno+' - '+nome);
+    $('#lista-mural').append('<p class="atualizado" id="atualizado-mural">Atualizado '+moment(data_atualizacao_mural,'DDMMYYYYhmmss').fromNow()+'</p>');
+    if (mural == "") {
+        $('#lista-mural').append('<div class="card"><ul class="table-view"><li class="table-view-cell" style="text-align: justify">Você não possui avisos!</li></ul></div>');
     }
-    $('body').append('<div id="myModal" class="modal"><header class="bar bar-nav"><a id="fechar-modal" onclick="pagina_atual = \'mural\'" class="icon icon-left-nav pull-left" href="#myModal"></a><h1 class="title titulo-modal">AVISOS</h1></header><div class="modal-content content"><ul class="table-view"><li class="table-view-cell titulo titulo-aviso"></li></ul><div class="card"><span id="data"></span><br /><span id="remetente"></span></div><div class="card content-padded"><p class="texto-aviso"></p></div></div></div>');
+    else{
+        for(var key in mural){
+            $('#lista-mural').append('<div class="card"><ul class="table-view"><li class="table-view-cell media"><a onclick="altera_conteudo_modal(\''+mural[key].assunto+'\',\''+mural[key].data+'\',\''+valida_remetente(mural[key].remetente)+'\',\'<pre>'+encodeURI(mural[key].texto)+'</pre>\')" href="#myModal"><div class="media-body"><span class="nome-azul">'+mural[key].assunto+'</span><p>Toque para visualizar</p></div></a></li></ul></div>');
+        }
+        $('body').append('<div id="myModal" class="modal"><header class="bar bar-nav"><a id="fechar-modal" onclick="pagina_atual = \'mural\'" class="icon icon-left-nav pull-left" href="#myModal"></a><h1 class="title titulo-modal">AVISOS</h1></header><div class="modal-content content"><ul class="table-view"><li class="table-view-cell titulo titulo-aviso"></li></ul><div class="card"><span id="data"></span><br /><span id="remetente"></span></div><div class="card content-padded"><p class="texto-aviso"></p></div></div></div>');
+    }
     $('#load').hide();
     $('#conteudo-mural').show();
 }
@@ -216,9 +235,12 @@ function carrega_mural_adx(){
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
         success: function(dados) {
-            mural = JSON.parse(JSON.stringify(dados).replace('\\n','<br />'));
+            mural = JSON.parse(JSON.stringify(dados).replace('\\n','<br />')).mural;
+            data_atualizacao_mural = dados.hora;
             if (lembrar) {
-                localStorage.setItem('mural',JSON.stringify(dados).replace('\\n','<br />'));
+                var d = new Date();
+                localStorage.setItem('mural',JSON.stringify(mural).replace('\\n','<br />'));
+                localStorage.setItem('data_atualizacao_mural',dados.hora);
             }
            
             gerar_html_mural();
@@ -261,7 +283,7 @@ function valida_remetente(text){
 
 function sair(){
     localStorage.clear();
-    ret = null;
+    notas = null;
     lembrar = null;
     aluno = null;
     unidade = null;

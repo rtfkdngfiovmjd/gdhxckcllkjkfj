@@ -1,4 +1,4 @@
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/ADXMobile.ap_ \
+/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/ADX20Mobile.ap_ \
  : /var/www/html/flux/adx-mobile-2/platforms/android/res/values/strings.xml \
 /var/www/html/flux/adx-mobile-2/platforms/android/res/drawable-ldpi/icon.png \
 /var/www/html/flux/adx-mobile-2/platforms/android/res/drawable-xhdpi/icon.png \
@@ -11,8 +11,8 @@
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/res/drawable-hdpi/icon.png \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/_where-is-www.txt \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www \
-/var/www/html/flux/adx-mobile-2/platforms/android/assets/www/icon.png \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/phonegap.js \
+/var/www/html/flux/adx-mobile-2/platforms/android/assets/www/res \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/config.xml \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/css \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js \
@@ -26,8 +26,11 @@
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/login.html \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/fonts \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/img \
+/var/www/html/flux/adx-mobile-2/platforms/android/assets/www/res/img \
+/var/www/html/flux/adx-mobile-2/platforms/android/assets/www/res/img/icon.png \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/css/style.css \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/css/ratchet.min.css \
+/var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/moment-with-locales.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/ratchet.min.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/mural.js \
 /var/www/html/flux/adx-mobile-2/platforms/android/assets/www/js/index.js \
