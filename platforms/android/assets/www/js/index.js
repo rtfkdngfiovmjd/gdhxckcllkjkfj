@@ -64,8 +64,7 @@ $(function(){
             async: true,
             success: function(dados) {
                 if (dados.erro==1 ) {
-                    notification('Senha ou usuário incornotasos!','notification-error');
-                    location.reload();
+                    notification('Unidade, senha ou usuário incorretos!','notification-error');
                 } else{
                     aluno = $("#aluno").val();
                     unidade = $("#unidade").val();
