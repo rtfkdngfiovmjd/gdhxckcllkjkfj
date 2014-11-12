@@ -1,6 +1,6 @@
 <?php 
 header('Access-Control-Allow-Origin: *');
-
+header('Access-Control-Allow-Headers: Pragma, Cache-Control');
 $db = mysql_connect('192.168.10.238','root','xad11doc') or die("Database error"); 
 
 $unidades["1"] = "crgola";
