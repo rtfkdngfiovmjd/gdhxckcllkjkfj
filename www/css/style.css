@@ -394,3 +394,21 @@ pre{
 #nome-usuario{
   font-size: 12px;
 }
+@media screen and (min-height: 800px) {
+  .bar-tab .tab-item .icon{
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    top: -3px;
+  }
+  .bar-tab .tab-item .icon~.tab-label{
+    font-size: 20px;
+  }
+  .bar-tab .tab-item{
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+  .notification{
+    bottom: 95px;
+  }
+}

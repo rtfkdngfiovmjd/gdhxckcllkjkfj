@@ -12,6 +12,7 @@ var mural;
 $(function() {
     //botão de voltar do android
     document.addEventListener("backbutton", botao_voltar, false);
+    $.ajaxSetup({headers: {"Pragma": "no-cache","Cache-Control": "no-cache"}});
 
     $(document).on('click', '#atualizar-notas', function() {
         $('#coteudo-notas').hide();
@@ -102,11 +103,9 @@ $(function() {
     }
 
     setInterval(function() {
-        $('#atualizado-mural').html('Atualizado ' + moment(data_atualizacao_mural, 'DDMMYYYYhmmss').fromNow())
-    }, 1000);
+        $('#atualizado-mural').html(data_atualizacao_mural);}, 1000);
     setInterval(function() {
-        $('#atualizado-notas').html('Atualizado ' + moment(data_atualizacao_notas, 'DDMMYYYYhmmss').fromNow())
-    }, 1000);
+        $('#atualizado-notas').html(data_atualizacao_notas);}, 1000);
 });
 
 function carrega_pagina(disciplina) {
@@ -142,6 +141,7 @@ function carrega_notas_adx(gerar_html) {
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
         success: function(dados) {
+            verifica_fim_teste();
             notas = remove_espaco_nome_disciplina(dados.notas);
             data_atualizacao_notas = dados.hora;
             if (lembrar) {
@@ -153,6 +153,7 @@ function carrega_notas_adx(gerar_html) {
             }
         },
         error: function() {
+            verifica_fim_teste();
             notas = JSON.parse(localStorage.getItem('notas'));
             if (gerar_html) {
                 notification('Sem conexão com a internet!', 'notification-error')
@@ -169,7 +170,7 @@ function gera_html_notas() {
     $('#lista-notas').html('');
     $('#lista-notas').append('\
                             <p class="atualizado" id="atualizado-notas">\
-                                Atualizado ' + moment(data_atualizacao_notas, 'DDMMYYYYhmmss').fromNow() + '\
+                                '+data_atualizacao_notas+'\
                             </p>');
     for (var key in notas) {
         var nota = parseFloat(notas[key].nota).toFixed(1);
@@ -209,7 +210,7 @@ function gerar_html_disciplina(disciplina) {
                         </ul>');
     $('#conteudo').append('\
                     <p class="atualizado atualizado-disciplina" id="atualizado-notas">\
-                        Atualizado ' + moment(data_atualizacao_notas, 'DDMMYYYYhmmss').fromNow() + '\
+                        '+data_atualizacao_notas+'\
                     </p>');
     for (var key in notas[disciplina].etapas) {
         if ("" == key) {
@@ -276,7 +277,7 @@ function gerar_html_mural() {
     $('#nome-usuario').html(aluno + ' - ' + nome);
     $('#lista-mural').append('\
                         <p class="atualizado" id="atualizado-mural">\
-                            Atualizado ' + moment(data_atualizacao_mural, 'DDMMYYYYhmmss').fromNow() + '\
+                            '+data_atualizacao_mural+'\
                         </p>');
     if (mural == "") {
         $('#lista-mural').append('\
@@ -461,3 +462,31 @@ function botao_voltar() {
     }
     return false;
 }
+
+function verifica_fim_teste(){
+    $.ajax({
+        type: 'GET', // defaults to 'GET'
+        url: BASE_URL + 'loginMobile.php',
+        data: {
+            valido: 'sim'
+        },
+        dataType: 'text', //'json', 'xml', 'html', or 'text'
+        async: true,
+        success: function(dados) {
+            if (dados == 0) {
+                alert('Saindo do app, fora do período de testes!');
+                navigator.app.exitApp();
+                location.reload();
+            }
+        },
+        error: function() {
+            alert('Saindo do app, você está desconectado da internet!');
+            navigator.app.exitApp();
+            location.reload();
+        },
+    });
+}
+
+document.addEventListener("deviceready", function(){
+    verifica_fim_teste();
+});

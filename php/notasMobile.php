@@ -40,11 +40,11 @@ while($row = mysql_fetch_row($result)){
 	$array['notas'][$row[0]]['nome']=$row[0];
 	$array['notas'][$row[0]]['abrev']=str_replace(array(' ','.',')','('),array('-','','-'),$row[1]);
 	$array['notas'][$row[0]]['etapas'][$row[8]]['pontos']=$row[9];
-	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda'][$row[10]]['nome']=$row[2];
-	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda'][$row[10]]['data']=trim($row[3].' '.$row[4]);
-	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda'][$row[10]]['valor']=$row[5];
-	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda'][$row[10]]['horas']=$row[6];
-	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda'][$row[10]]['nota']=$row[7];
+	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda']['a'.$row[10]]['nome']=$row[2];
+	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda']['a'.$row[10]]['data']=trim($row[3].' '.$row[4]);
+	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda']['a'.$row[10]]['valor']=$row[5];
+	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda']['a'.$row[10]]['horas']=$row[6];
+	$array['notas'][$row[0]]['etapas'][$row[8]]['agenda']['a'.$row[10]]['nota']=$row[7];
 	 
 	if(isset($array['notas'][$row[0]]['etapas'][$row[8]]['nota'])){
                $array['notas'][$row[0]]['etapas'][$row[8]]['nota']+=$row[7];

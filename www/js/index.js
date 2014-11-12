@@ -103,11 +103,9 @@ $(function() {
     }
 
     setInterval(function() {
-        $('#atualizado-mural').html('Atualizado ' + moment(data_atualizacao_mural, 'DDMMYYYYhmmss').fromNow())
-    }, 1000);
+        $('#atualizado-mural').html(data_atualizacao_mural);}, 1000);
     setInterval(function() {
-        $('#atualizado-notas').html('Atualizado ' + moment(data_atualizacao_notas, 'DDMMYYYYhmmss').fromNow())
-    }, 1000);
+        $('#atualizado-notas').html(data_atualizacao_notas);}, 1000);
 });
 
 function carrega_pagina(disciplina) {
@@ -170,7 +168,7 @@ function gera_html_notas() {
     $('#lista-notas').html('');
     $('#lista-notas').append('\
                             <p class="atualizado" id="atualizado-notas">\
-                                Atualizado ' + moment(data_atualizacao_notas, 'DDMMYYYYhmmss').fromNow() + '\
+                                '+data_atualizacao_notas+'\
                             </p>');
     for (var key in notas) {
         var nota = parseFloat(notas[key].nota).toFixed(1);
@@ -210,7 +208,7 @@ function gerar_html_disciplina(disciplina) {
                         </ul>');
     $('#conteudo').append('\
                     <p class="atualizado atualizado-disciplina" id="atualizado-notas">\
-                        Atualizado ' + moment(data_atualizacao_notas, 'DDMMYYYYhmmss').fromNow() + '\
+                        '+data_atualizacao_notas+'\
                     </p>');
     for (var key in notas[disciplina].etapas) {
         if ("" == key) {
@@ -277,7 +275,7 @@ function gerar_html_mural() {
     $('#nome-usuario').html(aluno + ' - ' + nome);
     $('#lista-mural').append('\
                         <p class="atualizado" id="atualizado-mural">\
-                            Atualizado ' + moment(data_atualizacao_mural, 'DDMMYYYYhmmss').fromNow() + '\
+                            '+data_atualizacao_mural+'\
                         </p>');
     if (mural == "") {
         $('#lista-mural').append('\

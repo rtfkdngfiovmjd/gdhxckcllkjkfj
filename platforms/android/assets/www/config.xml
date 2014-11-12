@@ -2,7 +2,7 @@
 <widget id="com.fluxsoftwares.adx-2-0-mobile" versionCode="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>ADX 2.0 Mobile</name>
     <description>
-        Alterar
+        Aplicativo do sistema acadêmico ADX 2.0, veja seu mural de avisos e suas notas
     </description>
     <author email="suporteadx@doctum.edu.br" href="http://doctum.edu.br/">
         Flux Softwares
@@ -21,7 +21,7 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <icon src="www/res/img/icon.png" />
     <!--
