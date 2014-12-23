@@ -212,7 +212,6 @@ label {
   width:100%;
   height:100%;
   margin:0 0;
-  cursor:pointer;
   opacity:0;
   filter:alpha(opacity=0);
   z-index:2;
@@ -261,6 +260,7 @@ html {
 .bar-nav{
     background-color: rgba(57, 59, 60, 1);
     border-bottom: 0px;
+    position: relative;
 }
 #tela-notas{
     display: none;
@@ -282,7 +282,6 @@ html {
 }
 .content-page{
     background-color: #efefef;
-    margin-bottom: 35px;
 }
 .titulo-modal{
     color: white;
@@ -295,9 +294,15 @@ html {
     color: black;
 }
 .texto-aviso{
-    text-align: justify;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
 }
-
+#remetente, #data{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
 html {
     -webkit-user-select: none;
 }
@@ -338,6 +343,7 @@ a{
 }
 .bar-nav ~ .content {
   padding-top: 40px;
+  height: 100%;
 }
 .modal > .content {
   padding-top: 28px;
@@ -368,7 +374,7 @@ pre{
   background-color: rgba(218, 64, 52, 1);
 }
 .notification-success{
-  background-color: rgba(52, 218, 77, 1);
+  background-color: #5CB85C;
 }
 .notification p{
   color: white;
@@ -460,4 +466,78 @@ a.not-active:active{
   text-align: justify;
   right: 15px;
   top: 162px;
+}
+#menu{
+  /*display: none;*/
+  left: -70%;
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  width: 70%;
+  height: 100%;
+  background-color: #252728;
+  overflow-y: scroll;
+}
+
+#menu > ul > li{
+  background-color: #252728;
+  color: white;
+  border-color: #202324;
+}
+#menu > ul{
+  border-color: #202324;
+}
+#container{
+  position: relative;
+  height: 100%;
+}
+.item-menu{
+  height: 60px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+hr {
+  border: none;
+  border-top: 1px solid #252728;
+  height: 5px;
+  background: -webkit-radial-gradient(50% 0%, 50% 5px, #555555 0%, #252728 100%);
+  -webkit-margin-after: 0;
+  -webkit-margin-before: 0;
+}
+.hr-ativo{
+   border-top: 1px solid #38393A;
+}
+.item-ativo{
+  background-color: #38393A !important;
+  border-bottom: 0;
+}
+.nome-menu{
+  font-size: 15px;
+}
+.table-view-sem-borda{
+  border-top: 0px solid #DDD;
+  border-bottom: 0px solid #DDD;
+}
+.accordion{
+  display: none;
+}
+.center{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+#linha-digitavel{
+  width: 100%;
+  margin-bottom: 5px;
+}
+.table-view-cell > a:not(.btn){
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.justificar{
+  text-align: justify;
+  word-break: break-all;
+}
+textarea{
+  resize: none;
 }
