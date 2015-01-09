@@ -1,51 +1,38 @@
-  <img id="logo" src="img/logo.png">
-      <div class="login">
-          <p>
-            <select class="login-input" id="unidade"  placeholder="login">
-              <option value=""> Selecione a Unidade</option>
-              <optgroup label="Graduação">
-                <option value="1">Carangola</option>
-                <option value="2">Caratinga</option>
-                <option value="3">Cataguases</option>
-                <option value="4">Guarapari</option>
-                <option value="5">Iúna</option>
-                <option value="6">Ipatinga</option>
-                <option value="7">João Monlevade</option>
-                <option value="8">Juiz de Fora</option>
-                <option value="9">Leopoldina</option>
-                <option value="10">Manhuaçu</option>
-                <option value="11">Serra</option>
-                <option value="12">Teófilo Otoni</option>
-                <option value="13">Vila Velha</option>
-                <option value="14">Vitória</option>
-              </optgroup>
-              <optgroup label="Colégio">
-                <option value="15">Colégio Caratinga</option>
-                <option value="16">Colégio Doctum</option>
-                <option value="17">Colégio JK</option>
-                <option value="18">Guarapari</option>
-                <option value="19">João Monlevade</option>
-                <option value="20">Serra</option>
-                <option value="21">Vila Velha</option>
-                <option value="22">Vitória</option>
-              </optgroup>
-          </select>
-      </p>
-      <p>
-        <input class="login-input" type="number" name="aluno" id="aluno" placeholder="Seu login">
+<img id="logo" src="img/logo.png">
+    <div class="login">
+        <p>
+          <select id="unidade"  placeholder="login">
+            <option value=""> Selecione a Unidade</option>
+            <option value="1">Carangola</option>
+            <option value="2">Caratinga</option>
+            <option value="3">Cataguases</option>
+            <option value="4">Guarapari</option>
+            <option value="5">Iúna</option>
+            <option value="6">Ipatinga</option>
+            <option value="7">João Monlevade</option>
+            <option value="8">Juiz de Fora</option>
+            <option value="9">Leopoldina</option>
+            <option value="10">Manhuaçu</option>
+            <option value="11">Serra</option>
+            <option value="12">Teófilo Otoni</option>
+            <option value="13">Vila Velha</option>
+            <option value="14">Vitória</option>
+        </select>
     </p>
-
     <p>
-        <input class="login-input" type="password" name="senha" id="senha" placeholder="Sua senha">
-    </p>
-    <p>Mantenha-me conectado</p>
-    <span class="checkbox manter-conectado">
-      <input id="lembrar" style="display: none" disabled checked type="checkbox">
-      <label data-on="Sim" data-off="Não"></label>
-    </span>
-    <button class="limpar">Limpar</button>
-
-  <p class="login-submit">
-    <button type="submit" id="entrar" class="login-button">Login</button>
+      <input type="number" name="aluno" id="aluno" placeholder="Seu login">
   </p>
-  </div>
+
+  <p>
+      <input type="password" name="senha" id="senha" placeholder="Sua senha">
+  </p>
+  <p>Mantenha-me conectado</p>
+  <span class="checkbox">
+    <input id="lembrar" checked type="checkbox">
+    <label data-on="Sim" data-off="Não"></label>
+</span>
+
+<p class="login-submit">
+  <button type="submit" id="entrar" class="login-button">Login</button>
+</p>
+</div>
