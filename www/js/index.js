@@ -141,7 +141,7 @@ function carrega_notas_adx(gerar_html) {
         dataType: 'json', //'json', 'xml', 'html', or 'text'
         async: true,
         success: function(dados) {
-            notas = remove_espaco_nome_disciplina(dados.notas);
+            notas = remove_espaco_nome_disciplina(dados.disciplinas);
             data_atualizacao_notas = dados.hora;
             if (lembrar) {
                 localStorage.setItem('notas', JSON.stringify(notas));
@@ -351,6 +351,9 @@ function carrega_mural_adx() {
         async: true,
         success: function(dados) {
             mural = JSON.parse(JSON.stringify(dados).replace('\\n', '<br />')).mural;
+            if (mural == undefined) {
+                mural = '';
+            }
             data_atualizacao_mural = dados.hora;
             if (lembrar) {
                 var d = new Date();
