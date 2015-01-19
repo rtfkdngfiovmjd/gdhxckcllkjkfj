@@ -32,7 +32,7 @@
     <icon src="www/res/img/icon.png" platform="android" density="mdpi" />
     <icon src="www/res/img/icon.png" platform="android" density="hdpi" />
     <icon src="www/res/img/icon.png" platform="android" density="xhdpi" />
-    <icon src="res/ios/icon.png" platform="ios" width="57" height="57" density="mdpi" />
-    <icon src="res/ios/icon-72.png" platform="ios" width="72" height="72" density="mdpi" />
+    <icon src="www/res/ios/icon.png" platform="ios" width="57" height="57" density="mdpi" />
+    <icon src="www/res/ios/icon-72.png" platform="ios" width="72" height="72" density="mdpi" />
     <access origin="*" />
 </widget>
