@@ -9,38 +9,36 @@ var lembrar = null;
 var notas;
 var mural;
 
-$(function() {
-    //botão de voltar do android
-    document.addEventListener("backbutton", botao_voltar, false);
+$(function() { 
     $.ajaxSetup({headers: {"Pragma": "no-cache","Cache-Control": "no-cache"}});
 
-    $(document).on('click', '#atualizar-notas', function() {
+    $(document).on('tap', '#atualizar-notas', function() {
         $('#coteudo-notas').hide();
         $('#load').show();
         carrega_notas_adx(true);
     });
-    $(document).on('click', '#atualizar-mural', function() {
+    $(document).on('tap', '#atualizar-mural', function() {
         $('#conteudo-mural').hide();
         $('#load').show();
         carrega_mural_adx();
     });
     //Sair da aplicação
-    $(document).on('click', '#sair', function() {
+    $(document).on('tap', '#sair', function() {
         sair();
     });
-    $(document).on('click', '#notas, #voltar-notas', function() {
+    $(document).on('tap', '#notas, #voltar-notas', function() {
         $('body').load('notas.html', function() {
             carrega_pagina();
         });
     });
-    $(document).on('click', '#mural', function() {
+    $(document).on('tap', '#mural', function() {
         $('body').load('mural.html', function() {
             carrega_pagina();
         });
     });
 
     //Entrar na aplicação
-    $(document).on('click', '#entrar', function() {
+    $(document).on('tap', '#entrar', function() {
         if ($("#unidade").val() == "") {
             notification('Informe a unidade!', 'notification-error');
             return false;
@@ -166,6 +164,7 @@ function carrega_notas_adx(gerar_html) {
 
 function gera_html_notas() {
     $('#lista-notas').html('');
+    $('#nome-usuario').html(aluno.substring(0,2)+'-'+aluno.substring(2,4)+'-'+aluno.substring(4,9)+' - ' + nome);
     $('#lista-notas').append('\
                             <p class="atualizado" id="atualizado-notas">\
                                 '+data_atualizacao_notas+'\
@@ -272,7 +271,7 @@ function gerar_html_disciplina(disciplina) {
 function gerar_html_mural() {
     $('#lista-mural').html('');
     $('#modais').html('');
-    $('#nome-usuario').html(aluno + ' - ' + nome);
+    $('#nome-usuario').html(aluno.substring(0,2)+'-'+aluno.substring(2,4)+'-'+aluno.substring(4,9)+' - ' + nome);
     $('#lista-mural').append('\
                         <p class="atualizado" id="atualizado-mural">\
                             '+data_atualizacao_mural+'\
@@ -434,7 +433,7 @@ function altera_conteudo_modal(assunto, data, remetente, text) {
 function notification(text, classe) {
     $('.notification').remove();
     $('body').append($('<div class="notification ' + classe + '"><p>' + text + '</p></div>').hide().fadeIn(800));
-    $(document).on('click', 'body', function() {
+    $(document).on('tap', 'body', function() {
         $('.notification').fadeOut(800, function() {
             $(this).remove();
         });
