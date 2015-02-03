@@ -24,6 +24,7 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <preference name="fullscreen" value="true" />
+    <icon platform="ios" src="res/icon/ios/icon.png" />
     <icon src="www/res/img/icon.png" />
     <icon src="www/res/img/icon.png" platform="android" density="ldpi" />
     <icon src="www/res/img/icon.png" platform="android" density="mdpi" />
@@ -36,5 +37,6 @@
     <icon src="res/icon/ios/icon-60-2x.png" platform="ios" width="120" height="120" />
     <icon src="res/icon/ios/icon-76-2x.png" platform="ios" width="152" height="152" />
     <icon src="res/icon/ios/icon-76.png" platform="ios" width="76" height="76" />
+    
     <access origin="*" />
 </widget>
