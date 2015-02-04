@@ -25,7 +25,7 @@
     <preference name="android-installLocation" value="auto" />
     <preference name="fullscreen" value="true" />
     <icon platform="ios" src="www/res/icon/ios/icon.png" />
-    <icon src="www/res/icon/ios/icon.png" />
+    <icon src="www/res/img/icon.png" />
     <icon src="www/res/img/icon.png" platform="android" density="ldpi" />
     <icon src="www/res/img/icon.png" platform="android" density="mdpi" />
     <icon src="www/res/img/icon.png" platform="android" density="hdpi" />
