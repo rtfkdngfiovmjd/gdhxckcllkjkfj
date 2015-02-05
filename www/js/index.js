@@ -10,6 +10,8 @@ var notas;
 var mural;
 
 $(function() { 
+    //botão de voltar do android
+    document.addEventListener("backbutton", botao_voltar, false);
     $.ajaxSetup({headers: {"Pragma": "no-cache","Cache-Control": "no-cache"}});
 
     $(document).on('tap', '#atualizar-notas', function() {
