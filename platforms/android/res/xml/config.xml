@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.fluxsoftwares.adx-2-0-mobile" version="1.0.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.fluxsoftwares.adx" version="1.1.1" versionCode="2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
     <name>ADX 2.0 Mobile</name>
     <description>
@@ -32,5 +35,13 @@
     <icon density="mdpi" platform="android" src="www/res/img/icon.png" />
     <icon density="hdpi" platform="android" src="www/res/img/icon.png" />
     <icon density="xhdpi" platform="android" src="www/res/img/icon.png" />
+    <icon height="57" platform="ios" src="res/icon/ios/icon-57.png" width="57" />
+    <icon height="72" platform="ios" src="res/icon/ios/icon-72.png" width="72" />
+    <icon height="114" platform="ios" src="res/icon/ios/icon-57-2x.png" width="114" />
+    <icon height="144" platform="ios" src="res/icon/ios/icon-72-2x.png" width="144" />
+    <icon height="120" platform="ios" src="res/icon/ios/icon-60-2x.png" width="120" />
+    <icon height="152" platform="ios" src="res/icon/ios/icon-76-2x.png" width="152" />
+    <icon height="76" platform="ios" src="res/icon/ios/icon-76.png" width="76" />
+    <icon platform="ios" src="res/icon/ios/icon.png" />
     <access origin="*" />
 </widget>
