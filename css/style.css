@@ -261,6 +261,11 @@ html {
 .bar-nav{
     background-color: rgba(57, 59, 60, 1);
     border-bottom: 0px;
+    padding-top: 15px;
+    line-height: 
+}
+.bar{
+  height: 60px;
 }
 #tela-notas{
     display: none;
@@ -334,7 +339,7 @@ a{
   font-weight: bold;
 }
 .bar-nav ~ .content {
-  padding-top: 43px;
+  padding-top: 55px;
 }
 .modal > .content {
   padding-top: 28px;
@@ -411,4 +416,7 @@ pre{
   .notification{
     bottom: 95px;
   }
+}
+.content > .table-view:first-child {
+    margin-top: 30px;
 }
