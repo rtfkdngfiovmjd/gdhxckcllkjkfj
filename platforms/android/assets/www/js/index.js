@@ -1,4 +1,4 @@
-var BASE_URL = 'http://sicof.doctum.edu.br/';
+var BASE_URL = 'http://app.doctum.edu.br/';
 var aluno = localStorage.getItem('aluno');
 var unidade = localStorage.getItem('unidade');
 var nome = localStorage.getItem('nome');

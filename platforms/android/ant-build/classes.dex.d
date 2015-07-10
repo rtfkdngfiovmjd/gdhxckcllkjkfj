@@ -4,7 +4,6 @@
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R$drawable.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/BuildConfig.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R.class \
-/var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/ADX20Mobile.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx_2_0_mobile/R$string.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx/R$attr.class \
 /var/www/html/flux/adx-mobile-2/platforms/android/ant-build/classes/com/fluxsoftwares/adx/R$xml.class \
