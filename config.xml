@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.fluxsoftwares.adx" versionCode="3" version="1.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>ADX 2.0 Mobile</name>
+    <description>
+        Aplicativo do sistema acadêmico ADX 2.0, veja seu mural de avisos e suas notas
+    </description>
+    <author email="suporteadx@doctum.edu.br" href="http://doctum.edu.br/">
+        Flux Softwares
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <icon src="www/res/img/icon.png" />
+    <icon src="www/res/img/icon.png" platform="android" density="ldpi" />
+    <icon src="www/res/img/icon.png" platform="android" density="mdpi" />
+    <icon src="www/res/img/icon.png" platform="android" density="hdpi" />
+    <icon src="www/res/img/icon.png" platform="android" density="xhdpi" />
+    <icon src="www/res/icon/ios/icon-57.png" platform="ios" width="57" height="57" />
+    <icon src="www/res/icon/ios/icon-72.png" platform="ios" width="72" height="72" />
+    <icon src="www/res/icon/ios/icon-57-2x.png" platform="ios" width="114" height="114" />
+    <icon src="www/res/icon/ios/icon-72-2x.png" platform="ios" width="144" height="144" />
+    <icon src="www/res/icon/ios/icon-60-2x.png" platform="ios" width="120" height="120" />
+    <icon src="www/res/icon/ios/icon-76-2x.png" platform="ios" width="152" height="152" />
+    <icon src="www/res/icon/ios/icon-76.png" platform="ios" width="76" height="76" />
+    <icon src="www/res/icon/ios/icon.png" platform="ios" />    
+    <preference name="Orientation" value="portrait" />
+</widget>

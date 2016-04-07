@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/var/www/html/adx-mobile-2/platforms/android/build/intermediates/res/merged/release/drawable-xhdpi-v4/icon.png",
+        "source": "/var/www/html/adx-mobile-2/platforms/android/res/drawable-xhdpi/icon.png"
+    },
+    {
+        "merged": "/var/www/html/adx-mobile-2/platforms/android/build/intermediates/res/merged/release/drawable-xhdpi-v4/ic_action_next_item.png",
+        "source": "/var/www/html/adx-mobile-2/platforms/android/res/drawable-xhdpi/ic_action_next_item.png"
+    },
+    {
+        "merged": "/var/www/html/adx-mobile-2/platforms/android/build/intermediates/res/merged/release/drawable-xhdpi-v4/ic_action_previous_item.png",
+        "source": "/var/www/html/adx-mobile-2/platforms/android/res/drawable-xhdpi/ic_action_previous_item.png"
+    },
+    {
+        "merged": "/var/www/html/adx-mobile-2/platforms/android/build/intermediates/res/merged/release/drawable-xhdpi-v4/ic_action_remove.png",
+        "source": "/var/www/html/adx-mobile-2/platforms/android/res/drawable-xhdpi/ic_action_remove.png"
+    }
+]
