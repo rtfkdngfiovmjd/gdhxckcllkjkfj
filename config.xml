@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.fluxsoftwares.adx-2-0-mobile" versionCode="3" version="1.2.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.fluxsoftwares.adx-2-0-mobile" versionCode="3" version="1.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>ADX 2.0 Mobile</name>
     <description>
         Aplicativo do sistema acadêmico ADX 2.0, veja seu mural de avisos e suas notas
