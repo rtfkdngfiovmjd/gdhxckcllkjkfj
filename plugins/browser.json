@@ -1,0 +1,36 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-background-download": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx-2-0-mobile"
+        }
+    },
+    "dependent_plugins": {}
+}
