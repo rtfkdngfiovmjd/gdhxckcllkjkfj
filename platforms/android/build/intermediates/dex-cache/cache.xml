@@ -2,11 +2,13 @@
 <items version="2" >
 
     <item
-        jar="/var/www/html/adx-mobile-2/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/release/jars/classes.jar"
+        is-multidex="false"
+        jar="/var/www/html/adx-mobile-2/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
         jumboMode="false"
-        revision="23.0.2"
-        sha1="a6d7cc559dbb51bc17cbb91d705c72180bf199f5">
-        <dex dex="/var/www/html/adx-mobile-2/platforms/android/build/intermediates/pre-dexed/release/CordovaLib-unspecified-release_973b73e89a2408f45bc4434125038b5c8aa66829.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="5c34a75688e465f243680c6a65e20caac1eb3bf2">
+        <dex dex="/var/www/html/adx-mobile-2/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_38e75133bd1e54737a003d46f3822d9ae410b7d2.jar" />
     </item>
 
 </items>

@@ -4,29 +4,28 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {
-            "res/xml/config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            }
-        },
-        "res/xml/config.xml": {
-            "/*": {
-                "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>": 0
-            }
-        }
+        "files": {}
     },
     "installed_plugins": {
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.fluxsoftwares.adx"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.fluxsoftwares.adx"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.fluxsoftwares.adx"
         }
     },

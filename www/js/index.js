@@ -402,7 +402,7 @@ function gerar_html_agendamento(disciplina) {
 
 		                                 fileTransfer.download(
 		                                           uri,
-		                                           sPath + 'doc.pdf',
+		                                           sPath + arquivo_down.nome,
 		                                           function(entry) {
 		                                           window.open(entry.toURL(), "_system");
 		                                           	showAlertDowload(entry.toURL());
