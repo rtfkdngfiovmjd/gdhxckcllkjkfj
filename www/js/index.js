@@ -266,6 +266,7 @@ function gerar_html_trabalhos() {
 					        <span class="nome-azul">\
 						        ' + agenda[key].agendamento_disciplina + ' -' +'\
 						        ' + agenda[key].data_entrega + '\
+						        ' + ((agenda[key].arquivo_entregue == 0) ? '' : '<span class="icon icon-check"></span>' )+'\
 						    </span>\
 				        </li>\
 				        <li class="table-view-cell">\
@@ -397,14 +398,14 @@ function gerar_html_agendamento(disciplina) {
 		                                 var sPath = "/storage/emulated/0/Download/";
 		                                 //var uri = 'http://192.168.10.240/user/joaovitor/adx/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link;
 		                                 var uri = BASE_URL_HTTP + unidade + '/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link + '&consulta_externa=' + true;
+		                                 var res = encodeURI(uri);
 		                                 var fileTransfer = new FileTransfer();
 		                                 fileEntry.remove();
-
 		                                 fileTransfer.download(
-		                                           uri,
+		                                           res,
 		                                           sPath + arquivo_down.nome,
 		                                           function(entry) {
-		                                           window.open(entry.toURL(), "_system");
+		                                            window.open(entry.toURL(), "_system");
 		                                           	showAlertDowload(entry.toURL());
 		                                           },
 		                                           function(error) {
@@ -628,7 +629,8 @@ function gerar_html_boletos() {
 						">\
 				        <li class="table-view-cell">\
 				        	<span class="nome-azul">\
-				         		<a  onclick="$(\'body\').load(\'parcelas.html\',function(){carrega_pagina(\'' + key + '\');})" class="disciplina navigate-right" id_atividade= ' + boletos[key].codigo + '>  ' + boletos[key].parcela + 'ª Parcela  - Vencimento: ' + boletos[key].vencimento + ' </a>\
+				         		<a  onclick="$(\'body\').load(\'parcelas.html\',function(){carrega_pagina(\'' + key + '\');})" class="disciplina navigate-right" id_atividade= ' + boletos[key].codigo + '>  ' + boletos[key].parcela + 'ªParcela - Vencimento:' + boletos[key].vencimento+' </a></i>\
+				         	' +((boletos[key].pagamento == null) ? '' : '<span class="icon icon-check"></span>')+ '\
 				         	</span>\
 				        </li>\
 			        </ul>\
@@ -714,7 +716,7 @@ if(boletos[parcela].pagamento == null){
 	 );
 
 	document.addEventListener("deviceready", onDeviceReady, false);
-
+	function onDeviceReady(){}
 	function downloadFileBoleto(arquivo_bol){ //console.log('entrou');
 	        window.requestFileSystem(
 	                     LocalFileSystem.PERSISTENT, 0, 
@@ -736,10 +738,11 @@ if(boletos[parcela].pagamento == null){
 		                                           showAlertDowload(entry.toURL());
 	                                           },
 	                                           function(error) {
+	                                               alertDownError("Erro ao fazer o Download!");
 		                                           //console.log(JSON.stringify(error))
-		                                           console.log("download error source " + error.source);
-		                                           console.log("download error target " + error.target);
-		                                           console.log("upload error code: " + error.code);
+		                                           //console.log("download error source " + error.source);
+		                                           //console.log("download error target " + error.target);
+		                                           //console.log("upload error code: " + error.code);
 	                                           }
 	                                           );
 	                                 }, 
@@ -760,9 +763,12 @@ if(boletos[parcela].pagamento == null){
 		function fail(evt) {
 		    console.log(evt.target.error.code);
 		}
-		function onDeviceReady()
-		{
+		function alertDownError(message){
+			navigator.notification.alert(
+		        message                // message
+		    );
 		}
+		
 
 
 
