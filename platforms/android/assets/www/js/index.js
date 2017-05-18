@@ -47,6 +47,12 @@ $(function() {
 		$('#load').show();
 		carrega_boletos_adx(true);
 	});
+
+	$(document).on('tap', '#atualizar-materiais', function() {
+		$('#conteudo-materiais').hide();
+		$('#load').show();
+		carrega_materiais_adx(true);
+	});
 //-----------------------------------------------------------------------------------
 
 	//Sair da aplicação
@@ -80,6 +86,16 @@ $(function() {
 	});
 	$(document).on('tap', '#parcelas, #voltar-boletos', function() {
 		$('body').load('boletos.html', function() {
+			carrega_pagina();
+		});
+	});
+	$(document).on('tap', '#materiais', function() {
+		$('body').load('material.html', function() {
+			carrega_pagina();
+		});
+	});
+	$(document).on('tap', '#conteudoMaterial, #voltar-materiais', function() {
+		$('body').load('material.html', function() {
 			carrega_pagina();
 		});
 	});
@@ -137,6 +153,7 @@ $(function() {
 					carrega_notas_adx();
 					carrega_trabalhos_adx();
 					carrega_boletos_adx();
+					carrega_materiais_adx();
 					reConectar();
 				};
 			},
@@ -157,6 +174,7 @@ $(function() {
 		carrega_trabalhos_adx();
 		carrega_mural_adx();
 		carrega_boletos_adx();
+		carrega_materiais_adx();
 	} else {
 		pagina_atual = 'login';
 		$('body').load("login.html");
@@ -191,6 +209,12 @@ function carrega_pagina(disciplina) {
 	}
 	else if (pagina_atual == 'parcelas') {
 		gerar_html_parcelas(disciplina);
+	}
+	else if(pagina_atual == 'materiais'){
+		gerar_html_materiais();
+	}
+	else if(pagina_atual == 'conteudoMaterial'){
+		gerar_html_conteudoMaterial(disciplina);
 	}
 }
 
@@ -362,9 +386,11 @@ function gerar_html_agendamento(disciplina) {
 					</ul>\
 				</div>';
 				$('#conteudo-agenda').append(arq_prof);
+				//console.log(agenda[disciplina])
 				for(var num in agenda[disciplina].arquivo){
 					$("#botoes_down").append(
 						$("<li>").attr({
+							id: num,
 							class:"table-view-cell",
 						}).append(
 						    agenda[disciplina].arquivo[num].nome, 
@@ -374,8 +400,9 @@ function gerar_html_agendamento(disciplina) {
 								class: "btn btn-mini btn-danger"
 							}).click(function(){
 								arqs = $(this).attr('id')
-								//console.log( agenda[disciplina].arquivo[arqs] )
-								downloadFile(agenda[disciplina].arquivo[arqs]);
+								$("#"+arqs).append("<li id='x"+arqs+"'>Baixando...</li>" );
+								//console.log( arqs)
+								downloadFile(agenda[disciplina].arquivo[arqs],arqs);
 							}).text("Download")
 						)
 					 );
@@ -387,7 +414,8 @@ function gerar_html_agendamento(disciplina) {
 		document.addEventListener("deviceready", onDeviceReady, false);
 
 		 // http://192.168.10.240/user/joaovitor/adx/alunos/modulos/portal/download.php?tipo=doc20140321150017.pdf&nome=doc20140321150017.pdf&arquivo=L3Zhci93d3cvaGQxLzE5MDgzMTc0OTM1MzMwMTY3NzE2NWJmOC42NTAwODc2Nw==
-		    function downloadFile(arquivo_down){
+		    function downloadFile(arquivo_down, id_arq){
+		    	//console.log(arquivo_down)
 		        window.requestFileSystem(
 		                     LocalFileSystem.PERSISTENT, 0, 
 		                     function onFileSystemSuccess(fileSystem) {
@@ -396,19 +424,21 @@ function gerar_html_agendamento(disciplina) {
 		                                 function gotFileEntry(fileEntry){
 		                                 //var sPath = fileEntry.toURL().replace("dummy.html","");
 		                                 var sPath = "/storage/emulated/0/Download/";
-		                                 //var uri = 'http://192.168.10.240/user/joaovitor/adx/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link;
+		                                // var uri = 'http://192.168.10.240/user/joaovitor/adx/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link;
 		                                 var uri = BASE_URL_HTTP + unidade + '/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link + '&consulta_externa=' + true;
 		                                 var res = encodeURI(uri);
 		                                 var fileTransfer = new FileTransfer();
 		                                 fileEntry.remove();
-		                                 fileTransfer.download(
+		                                 fileTransfer.download(	
 		                                           res,
 		                                           sPath + arquivo_down.nome,
 		                                           function(entry) {
+		                                           	$("#x"+id_arq).remove();
 		                                            window.open(entry.toURL(), "_system");
 		                                           	showAlertDowload(entry.toURL());
 		                                           },
 		                                           function(error) {
+		                                           	   $("#x"+id_arq).remove();
 			                                           alertUploadError("Erro ao fazer o Download!")
 			                                           //console.log("download error source " + error.source);
 			                                           //console.log("download error target " + error.target);
@@ -642,6 +672,7 @@ function gerar_html_boletos() {
 }
 
 function gerar_html_parcelas(parcela) {
+	//console.log(parcela)
 	reConectar();
 	var arq_boleto = '';
 	$('#conteudo-parcelas').html('');
@@ -681,7 +712,7 @@ function gerar_html_parcelas(parcela) {
 				</li>\
 			</ul>\
 		</div>');
-if(boletos[parcela].pagamento == null){
+	if(boletos[parcela].pagamento == null){
 		arq_boleto = arq_boleto + '\
 			<div class="card">\
 				<ul class="table-view">\
@@ -700,6 +731,7 @@ if(boletos[parcela].pagamento == null){
 	$('#conteudo-parcelas').append(arq_boleto);
 	$("#botoes_down_boleto").append(
 		$("<li>").attr({
+			id: parcela,
 			class:"table-view-cell",
 		}).append(
 		    boletos[parcela].parcela+'ª Parcela', 
@@ -709,15 +741,16 @@ if(boletos[parcela].pagamento == null){
 				class: "btn btn-mini btn-danger"
 			}).click(function(){
 				arqs_boleto = $(this).attr('id')
+				$("#"+arqs_boleto).append("<li id='x"+arqs_boleto+"'>Baixando...</li>" );
 				//console.log(boletos[parcela])
-				downloadFileBoleto(boletos[parcela]);
+				downloadFileBoleto(boletos[parcela],arqs_boleto);
 			}).text("Download")
 		)
 	 );
 
 	document.addEventListener("deviceready", onDeviceReady, false);
 	function onDeviceReady(){}
-	function downloadFileBoleto(arquivo_bol){ //console.log('entrou');
+	function downloadFileBoleto(arquivo_bol, id_arq){ //console.log('entrou');
 	        window.requestFileSystem(
 	                     LocalFileSystem.PERSISTENT, 0, 
 	                     function onFileSystemSuccess(fileSystem) {
@@ -734,12 +767,13 @@ if(boletos[parcela].pagamento == null){
 	                                           uri,
 	                                           sPath + 'doc.pdf',
 	                                           function(entry) {
+	                                           	   $("#x"+id_arq).remove();
 		                                           window.open(entry.toURL(), "_system");
 		                                           showAlertDowload(entry.toURL());
 	                                           },
 	                                           function(error) {
+	                                           	   $("#x"+id_arq).remove();
 	                                               alertDownError("Erro ao fazer o Download!");
-		                                           //console.log(JSON.stringify(error))
 		                                           //console.log("download error source " + error.source);
 		                                           //console.log("download error target " + error.target);
 		                                           //console.log("upload error code: " + error.code);
@@ -785,6 +819,229 @@ if(boletos[parcela].pagamento == null){
 	$('#load').hide();
 	$('#conteudo-parcelas').show();
 }
+
+function carrega_materiais_adx(gerar_html) {
+	verifica_usuario();
+	var page = BASE_URL + unidade + '/mobile/aluno/leitura/materiaisMobile.php';
+	//var page = 'http://192.168.10.240/user/joaovitor/adx/mobile/aluno/leitura/materiaisMobile.php';
+	$.ajax({
+		type: 'GET', // defaults to 'GET'
+		url: page,
+		data: {
+			aluno: aluno,
+			sid:LOGIN.sid
+		},
+		dataType: 'json', //'json', 'xml', 'html', or 'text'
+		async: false,
+		success: function(dados) {
+			materiais = remove_espaco_nome_disciplina(dados.materiais);
+			//console.log(materiais)
+			data_atualizacao_notas = dados.hora;
+			if (lembrar) {
+				localStorage.setItem('materiais', JSON.stringify(materiais));
+				localStorage.setItem('data_atualizacao_notas', dados.hora);
+			}
+			if (gerar_html) {
+				gerar_html_materiais();
+			}
+		},
+		error: function(a,b,c) {
+			console.log(JSON.stringify(a))
+			console.log(b);
+			console.log(c);
+			notas = JSON.parse(localStorage.getItem('notas'));
+			if (gerar_html) {
+				notification('Sem conexão com a internet!', 'notification-error')
+			}
+			if (gerar_html) {
+				gerar_html_materiais();
+			}
+		},
+	});
+}
+
+function gerar_html_materiais() {
+	$('#lista-materiais').html('');
+	$('#nome-usuario').html(aluno.substring(0,2)+'-'+aluno.substring(2,4)+'-'+aluno.substring(4,9)+' - ' + nome);
+	$('#lista-materiais').append('\
+							<p class="atualizado" id="atualizado-notas">\
+								'+data_atualizacao_notas+'\
+							</p>');
+	for (var key in materiais) {
+		$('#lista-materiais').append('\
+								<div class="card">\
+									<ul class="table-view">\
+										<li class="table-view-cell">\
+											<a onclick="$(\'body\').load(\'conteudoMaterial.html\',function(){carrega_pagina(\'' + key + '\');})" class="disciplina navigate-right">\
+												<span class="nome-azul">\
+													' + materiais[key].nomeMateria + '\
+												</span>\
+											</a>\
+										</li>\
+									</ul>\
+								</div>');
+	}
+	$('#load').hide();
+	$('#conteudo-materiais').show();
+}
+
+function gerar_html_conteudoMaterial(disciplina) {
+	var aux = 0;
+	var arq_aluno = '';
+	$('#conteudo-material').html('');
+	$('#conteudo-material').append('\
+						<ul class="table-view">\
+							<li class="table-view-cell titulo">\
+								Materiais\
+								<p class="nome">\
+									' + materiais[disciplina].nomeMateria + '\
+								</p>\
+							</li>\
+						</ul>');
+	$('#conteudo-material').append('\
+					<p class="atualizado atualizado-disciplina" id="atualizado-notas">\
+						'+data_atualizacao_notas+'\
+					</p>');
+	if(materiais[disciplina].referencia){
+		aux = 1;
+		arq_aluno += "<div>\
+						<ul class='table-view'>\
+						<li class='table-view-cell'>\
+							<span class='nome-azul'>Material de Referência</span>";
+		$.each(materiais[disciplina].referencia, function(key, arquivoRef){
+						arq_aluno += "<li id='botoes_down_ref'>\
+										<li id='"+key+"'class='table-view-cell'>\
+											"+arquivoRef.nome+"\
+											<button class='btn btn-mini btn-danger ref_button' id='"+key+"' style='float:right;' >Download</button>\
+										</li>\
+									</li>";
+		});
+			arq_aluno += "</li>\
+						</ul>\
+					 </div>";
+		$('#conteudo-material').append(arq_aluno);
+		$.each(materiais[disciplina].referencia, function(key, arquivoRef){
+			$(".ref_button").click(function(){
+				if($(this).attr('id') == key){
+					$("#"+key).append("<li id='x"+key+"'>Baixando...</li>" );
+					downloadFile(arquivoRef, key);
+				}
+			})
+		});
+	}
+	arq_aluno = '';
+	if(materiais[disciplina].aulas){
+		aux = 1;
+		$.each(materiais[disciplina].aulas, function(key, objeto){
+			arq_aluno += "<div>\
+							<ul class='table-view'>\
+							<li class='table-view-cell'>\
+								<span class='nome-azul'>"+key+"</span>";
+								$.each(objeto.arquivos, function(index_arq, cada_arquivo){
+									arq_aluno += "<li id='botoes_down_aluno'"+key+">\
+													<li id='"+index_arq+"' class='table-view-cell'>\
+														"+cada_arquivo.nome+"\
+														<button class='btn btn-mini btn-danger arq_button' id='"+index_arq+"' style='float:right;' >Download</button>\
+													</li>\
+												 </li>";
+								});
+			arq_aluno += "</li>\
+						</ul>\
+					 </div>";
+		});
+		$('#conteudo-material').append(arq_aluno);
+		$.each(materiais[disciplina].aulas, function(key, objeto){
+			$(".arq_button").click(function(){
+				if(objeto.arquivos[$(this).attr('id')]){
+					$("#"+$(this).attr('id')).append("<li id='x"+$(this).attr('id')+"'>Baixando...</li>" );
+					//console.log(objeto.arquivos[$(this).attr('id')].link)
+					downloadFile(objeto.arquivos[$(this).attr('id')], $(this).attr('id'));
+				}
+			})
+		});
+	}
+	if(aux == 0){
+		$('#conteudo-material').append('\
+			<div class="card">\
+				<ul class="table-view">\
+					<li class="table-view-cell" style="text-align: justify">\
+						Não possui arquivos de aula!\
+					</li>\
+				</ul>\
+			</div>');
+	}
+
+	document.addEventListener("deviceready", onDeviceReady, false);
+    function downloadFile(arquivo_down, id_arq){
+    	//console.log(arquivo_down)
+        window.requestFileSystem(
+                     LocalFileSystem.PERSISTENT, 0, 
+                     function onFileSystemSuccess(fileSystem) {
+                     fileSystem.root.getFile(
+                                 "dummy.html", {create: true, exclusive: false}, 
+                                 function gotFileEntry(fileEntry){
+                                 //var sPath = fileEntry.toURL().replace("dummy.html","");
+                                 var sPath = "/storage/emulated/0/Download/";
+                                 //var uri = 'http://192.168.10.240/user/joaovitor/adx/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link;
+                                 var uri = BASE_URL_HTTP + unidade + '/alunos/modulos/portal/download.php?tipo=' + arquivo_down.nome + '&nome=' + arquivo_down.nome + '&arquivo=' + arquivo_down.link + '&consulta_externa=' + true;
+                                 var res = encodeURI(uri);
+                                 var fileTransfer = new FileTransfer();
+                                 fileEntry.remove();
+                                 fileTransfer.download(
+                                           res,
+                                           sPath + arquivo_down.nome,
+                                           function(entry) {
+                                           	   $("#x"+id_arq).remove();
+                                               window.open(entry.toURL(), "_system");
+                                           	   showAlertDowload(entry.toURL());
+                                           },
+                                           function(error) {
+                                           	   $("#x"+id_arq).remove();
+	                                           alertDownloadError("Erro ao fazer o Download!")
+	                                           //console.log("download error source " + error.source);
+	                                           //console.log("download error target " + error.target);
+	                                           //console.log("upload error code: " + error.code);
+                                           }
+                                           );
+                                 }, 
+                                 fail);
+                     }, 
+                     fail);
+ 
+    }
+
+	function showAlertDowload(message) {
+	    navigator.notification.alert(
+	        message,                // message
+	        'Download',            // title
+	        'Download Completo'                  // buttonName
+	    );
+	}
+
+	function fail(evt) {
+	    console.log(evt.target.error.code);
+	}
+
+	function alertDownloadError(message){
+			 navigator.notification.alert(
+		        message                // message
+		    );
+		}
+
+	function onDeviceReady()
+	{
+	}
+
+
+
+
+	$('#load').hide();
+	$('#conteudo-material').show();
+}
+
+
+
+
 //---------------------------------------------------------------------------------------------------------------------------------
 
 function carrega_notas_adx(gerar_html) {

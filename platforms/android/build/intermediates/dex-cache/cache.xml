@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/var/www/html/adx-mobile-2/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.3"
+        sha1="6ad98c7efa230e35ff63dd1b0674b811ee7c06ac">
+        <dex dex="/var/www/html/adx-mobile-2/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_38e75133bd1e54737a003d46f3822d9ae410b7d2.jar" />
+    </item>
+
+</items>
